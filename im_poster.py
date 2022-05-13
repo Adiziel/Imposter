@@ -14,9 +14,17 @@ bot_auth_key=config['AUTH_KEY']
 chat_id="resource_log"
 
 #create index
-def create_index(id):
+def create_index():
   message_link= f'https://t.me/resource_log/{id}'
-  url_index=
+  # index_message_id=
+  url_index= f'https://api.telegram.org/bot{bot_auth_key}/getChat?chat_id=@{chat_id}&message_id=3'
+  send_req = requests.get(url_index).json()['result']['pinned_message']['text']
+  index=0
+  for i in send_req:
+    if i == '\n':
+      index+=1
+  # print(index)
+
 
 #create a resource, title and entry in index
 def entry():
@@ -35,11 +43,17 @@ def entry():
   else:
     print('MESSAGE: HIJACKED!!!!')
 
+
+def looped(strng):
+  for strng in 
+
   
 
 entry()
+# create_index()
 
 #https://api.telegram.org/bot5133615692:AAGF7sKZU9edhtYqSPYPG9LlSNujGpJCDvM/getMe
 #https://api.telegram.org/bot5133615692:AAGF7sKZU9edhtYqSPYPG9LlSNujGpJCDvM/sendMessage?chat_id=@resource_log&text=[title](https://t.me/resource_log/26)&parse_mode=Markdown&disable_web_page_preview=True
 #https://api.telegram.org/bot5133615692:AAGF7sKZU9edhtYqSPYPG9LlSNujGpJCDvM/editMessageText?chat_id=@resource_log&message_id=10&text=hey
 #https://api.telegram.org/bot5133615692:AAGF7sKZU9edhtYqSPYPG9LlSNujGpJCDvM/pinChatMessage?chat_id=@resource_log&message_id=3&disable_notification=True
+#https://api.telegram.org/bot5133615692:AAGF7sKZU9edhtYqSPYPG9LlSNujGpJCDvM/getChat?chat_id=@resource_log
