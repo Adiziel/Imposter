@@ -60,7 +60,7 @@ def create_index(bot_auth_key, chat_id, title, id):
 
 
 #create a resource, title and entry in index
-def entry():
+def create_post():
   #user Inputs
   print('Input Credentials....')
   bot_auth_key= input('Telegram Bot Auth Key: ')
@@ -84,4 +84,4 @@ def entry():
   
 
 if __name__ == '__main__':
-  entry()
+  create_post()

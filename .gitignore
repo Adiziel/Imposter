@@ -1,3 +1,5 @@
 .env
 imposter_bot.md
 app.log
+__pycache__
+README1.md
