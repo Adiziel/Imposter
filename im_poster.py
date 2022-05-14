@@ -14,16 +14,42 @@ bot_auth_key=config['AUTH_KEY']
 chat_id="resource_log"
 
 #create index
-def create_index():
+def create_index(title, id):
+  title=str(title)
+
   message_link= f'https://t.me/resource_log/{id}'
-  # index_message_id=
-  url_index= f'https://api.telegram.org/bot{bot_auth_key}/getChat?chat_id=@{chat_id}&message_id=3'
-  send_req = requests.get(url_index).json()['result']['pinned_message']['text']
-  index=0
-  for i in send_req:
-    if i == '\n':
-      index+=1
-  # print(index)
+
+  url_index= f'https://api.telegram.org/bot{bot_auth_key}/getChat?chat_id=@{chat_id}'
+
+  try:
+    index_data = requests.get(url_index).json()['result']['pinned_message']['text']
+    index_message_id = requests.get(url_index).json()['result']['pinned_message']['message_id']
+    
+    print("Index Found...")
+    print(index_data)
+    index=0
+    for i in index_data:
+      if i == '\n':
+        index+=1
+    print(index)
+    index_final_data = "{}\n{}. {}>{}".format(index_data, index, title, message_link)
+    index_final_data=index_final_data.replace('\n', '%0A')
+
+    url_editmessage = f'https://api.telegram.org/bot{bot_auth_key}/editMessageText?chat_id=@{chat_id}&message_id={index_message_id}&text={index_final_data}&disable_web_page_preview=True'
+    send_request = requests.get(url_editmessage)
+
+    if send_request.status_code == 200:
+      print("Message Sent")
+  except KeyError:
+    print('There is no index\nCreating index now... ')
+    index_final_data=f"INDEX%0A1. {title}>{message_link}"
+    url_sendmessage = f'https://api.telegram.org/bot{bot_auth_key}/sendMessage?chat_id=@{chat_id}&text={index_final_data}&disable_web_page_preview=True'
+    send_request = requests.get(url_sendmessage)
+    pin_message_id = send_request.json()['result']['message_id']
+    url_pinmessage=f'https://api.telegram.org/bot{bot_auth_key}/pinChatMessage?chat_id=@{chat_id}&message_id={pin_message_id}&disable_notification=True'
+    pin_request = requests.get(url_pinmessage)
+    if send_request.status_code == 200:
+      print("Message Sent")
 
 
 #create a resource, title and entry in index
@@ -39,14 +65,8 @@ def entry():
   if send_req.status_code == 200:
     id =send_req.json()['result']['message_id']
     create_index(title, id)
-    print("Message Sent")
   else:
     print('MESSAGE: HIJACKED!!!!')
-
-
-def looped(strng):
-  for strng in 
-
   
 
 entry()
