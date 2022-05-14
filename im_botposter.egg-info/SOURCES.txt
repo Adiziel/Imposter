@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+im_botposter.egg-info/PKG-INFO
+im_botposter.egg-info/SOURCES.txt
+im_botposter.egg-info/dependency_links.txt
+im_botposter.egg-info/top_level.txt
+im_poster_telegram/__init__.py
+im_poster_telegram/im_poster.py

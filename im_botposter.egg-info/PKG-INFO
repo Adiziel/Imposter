@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: im-botposter
+Version: 0.0.1
+Summary: Im_poster is a Telegram Posts Management Tool
+Home-page: https://github.com/Adiziel/Imposter
+Author: Adiziel
+Author-email: aditya.pathak.plus@gmail.com
+License: UNKNOWN
+Keywords: python,telegram,telegram bot
+Platform: UNKNOWN
+License-File: LICENSE
+
+Imposter is a telegram bot which creates a post with title and message with and index to track that post, in telegram channel or group in which this bot has been added.
+
